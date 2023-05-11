@@ -7,6 +7,12 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+/**
+ * @author ：Kristen
+ * @date ：2023/5/11
+ * @description : 插入
+ */
+
 public class MainApp {
     // JDBC driver name and database URL
     static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
