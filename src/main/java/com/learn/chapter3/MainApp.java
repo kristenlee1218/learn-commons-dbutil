@@ -10,7 +10,7 @@ import java.sql.SQLException;
 /**
  * @author ：Kristen
  * @date ：2023/5/11
- * @description :
+ * @description : 更新
  */
 
 public class MainApp {
@@ -36,5 +36,4 @@ public class MainApp {
         }
     }
 }
-//更多请阅读：https://www.yiibai.com/dbutils/dbutils_update_query.html
 

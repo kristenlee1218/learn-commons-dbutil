@@ -27,7 +27,9 @@ public class MainApp {
         QueryRunner queryRunner = new QueryRunner();
         DbUtils.loadDriver(JDBC_DRIVER);
         try {
-            int insertedRecords = queryRunner.update(conn, "INSERT INTO employees(id,age,first,last)  VALUES (?,?,?,?)", 104, 30, "Sohan", "Kumar");
+            int insertedRecords = queryRunner.update(conn,
+                    "INSERT INTO employees(id,age,first,last)  VALUES (?,?,?,?)",
+                    104, 30, "Sohan", "Kumar");
             System.out.println(insertedRecords + " record(s) inserted");
         } finally {
             DbUtils.close(conn);

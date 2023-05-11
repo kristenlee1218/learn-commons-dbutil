@@ -38,7 +38,9 @@ public class MainApp {
         ResultSetHandler<Employee> resultHandler = new BeanHandler<Employee>(Employee.class);
 
         try {
-            Employee emp = queryRunner.query(conn, "SELECT * FROM employees WHERE first=?", resultHandler, "Sumit");
+            Employee emp = queryRunner.query(conn,
+                    "SELECT * FROM employees WHERE first=?",
+                    resultHandler, "Sumit");
             //Display values
             System.out.print("ID: " + emp.getId());
             System.out.print(", Age: " + emp.getAge());
