@@ -10,7 +10,7 @@ import java.util.Arrays;
 /**
  * @author ：Kristen
  * @date ：2023/5/12
- * @description :
+ * @description : ResultSetHandler 接口
  */
 
 public class MainApp {
