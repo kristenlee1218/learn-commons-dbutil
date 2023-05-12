@@ -42,9 +42,7 @@ public class MainApp {
         };
 
         try {
-            Object[] result = queryRunner.query(conn, "SELECT * FROM employees WHERE id=?",
-                    handler, 103);
-            //Display values
+            Object[] result = queryRunner.query(conn, "SELECT * FROM employees WHERE id=?", handler, 103);
             System.out.print("Result: " + Arrays.toString(result));
         } finally {
             DbUtils.close(conn);

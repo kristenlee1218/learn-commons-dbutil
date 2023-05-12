@@ -27,8 +27,7 @@ public class MainApp {
         QueryRunner queryRunner = new QueryRunner();
         DbUtils.loadDriver(JDBC_DRIVER);
         try {
-            int updatedRecords = queryRunner.update(conn,
-                    "UPDATE employees SET age=? WHERE id=?", 33, 104);
+            int updatedRecords = queryRunner.update(conn, "UPDATE employees SET age=? WHERE id=?", 33, 104);
             System.out.println(updatedRecords + " record(s) updated.");
         } finally {
             DbUtils.close(conn);

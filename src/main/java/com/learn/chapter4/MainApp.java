@@ -27,8 +27,7 @@ public class MainApp {
         QueryRunner queryRunner = new QueryRunner();
         DbUtils.loadDriver(JDBC_DRIVER);
         try {
-            int deletedRecords = queryRunner.update(conn,
-                    "DELETE from employees WHERE id=?", 104);
+            int deletedRecords = queryRunner.update(conn, "DELETE from employees WHERE id=?", 104);
             System.out.println(deletedRecords + " record(s) deleted.");
         } finally {
             DbUtils.close(conn);

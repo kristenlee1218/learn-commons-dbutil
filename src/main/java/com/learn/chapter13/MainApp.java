@@ -29,8 +29,7 @@ public class MainApp {
         EmployeeHandler employeeHandler = new EmployeeHandler();
 
         try {
-            Employee emp = queryRunner.query(conn, "SELECT * FROM employees WHERE first=?",
-                    employeeHandler, "Sumit");
+            Employee emp = queryRunner.query(conn, "SELECT * FROM employees WHERE first=?", employeeHandler, "Sumit");
             System.out.print("ID: " + emp.getId());
             System.out.print(", Age: " + emp.getAge());
             System.out.print(", Name: " + emp.getName());

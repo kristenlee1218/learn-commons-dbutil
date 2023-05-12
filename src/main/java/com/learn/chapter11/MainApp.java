@@ -31,8 +31,7 @@ public class MainApp {
         DbUtils.loadDriver(JDBC_DRIVER);
         System.out.println("Connecting to database...");
         try {
-            List<Map<String, Object>> result
-                    = queryRunner.query(conn, "SELECT * FROM employees", new MapListHandler());
+            List<Map<String, Object>> result = queryRunner.query(conn, "SELECT * FROM employees", new MapListHandler());
             System.out.println(result);
         } finally {
             DbUtils.close(conn);

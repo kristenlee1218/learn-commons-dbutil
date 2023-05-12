@@ -19,16 +19,15 @@ public class MainApp {
     public static void main(String[] args) throws SQLException {
 
         DbUtils.loadDriver(JDBC_DRIVER);
+        QueryRunner queryRunner = new QueryRunner(CustomDataSource.getInstance());
         ResultSetHandler<Employee> resultHandler = new BeanHandler<>(Employee.class);
-        QueryRunner queryRunner = new QueryRunner();
-        Employee emp = queryRunner.query("SELECT * FROM employees WHERE id=?",
-                resultHandler, 103);
 
-        //Display values
+        Employee emp = queryRunner.query("SELECT * FROM employees WHERE id=?", resultHandler, 103);
         System.out.print("ID: " + emp.getId());
         System.out.print(", Age: " + emp.getAge());
         System.out.print(", First: " + emp.getFirst());
         System.out.println(", Last: " + emp.getLast());
     }
 }
+
 
