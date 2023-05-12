@@ -1,4 +1,4 @@
-package com.learn.chapter1.chapter6;
+package com.learn.chapter6;
 
 /**
  * @author ：Kristen
