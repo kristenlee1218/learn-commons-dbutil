@@ -10,7 +10,7 @@ import java.sql.SQLException;
 /**
  * @author ：Kristen
  * @date ：2023/5/12
- * @description : DBUtils 自定义处理程序
+ * @description : DBUtils 自定义行处理器
  */
 
 public class MainApp {
@@ -31,8 +31,6 @@ public class MainApp {
         try {
             Employee emp = queryRunner.query(conn, "SELECT * FROM employees WHERE first=?",
                     employeeHandler, "Sumit");
-
-            //Display values
             System.out.print("ID: " + emp.getId());
             System.out.print(", Age: " + emp.getAge());
             System.out.print(", Name: " + emp.getName());

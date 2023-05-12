@@ -8,6 +8,12 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.concurrent.*;
 
+/**
+ * @author ：Kristen
+ * @date ：2023/5/12
+ * @description : AsyncQueryRunner 接口
+ */
+
 public class MainApp {
     // JDBC driver name and database URL
     static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
@@ -17,15 +23,11 @@ public class MainApp {
     static final String USER = "root";
     static final String PASS = "";
 
-    public static void main(String[] args) throws
-            SQLException, InterruptedException,
-            ExecutionException, TimeoutException {
+    public static void main(String[] args) throws SQLException, InterruptedException, ExecutionException, TimeoutException {
         Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
-
         AsyncQueryRunner asyncQueryRunner = new AsyncQueryRunner(Executors.newCachedThreadPool());
-
         DbUtils.loadDriver(JDBC_DRIVER);
-        Future<Integer> future = null;
+        Future<Integer> future;
         try {
             future = asyncQueryRunner.update(conn, "UPDATE employees SET age=? WHERE id=?", 33, 103);
             Integer updatedRecords = future.get(10, TimeUnit.SECONDS);

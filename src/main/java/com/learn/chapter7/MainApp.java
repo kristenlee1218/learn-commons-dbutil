@@ -27,20 +27,18 @@ public class MainApp {
         QueryRunner queryRunner = new QueryRunner();
         DbUtils.loadDriver(JDBC_DRIVER);
         System.out.println("Connecting to database...");
-        ResultSetHandler<Object[]> handler = new ResultSetHandler<Object[]>() {
-            public Object[] handle(ResultSet rs) throws SQLException {
-                if (!rs.next()) {
-                    return null;
-                }
-                ResultSetMetaData meta = rs.getMetaData();
-                int cols = meta.getColumnCount();
-                Object[] result = new Object[cols];
-
-                for (int i = 0; i < cols; i++) {
-                    result[i] = rs.getObject(i + 1);
-                }
-                return result;
+        ResultSetHandler<Object[]> handler = rs -> {
+            if (!rs.next()) {
+                return null;
             }
+            ResultSetMetaData meta = rs.getMetaData();
+            int cols = meta.getColumnCount();
+            Object[] result = new Object[cols];
+
+            for (int i = 0; i < cols; i++) {
+                result[i] = rs.getObject(i + 1);
+            }
+            return result;
         };
 
         try {

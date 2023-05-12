@@ -1,9 +1,13 @@
 package com.learn.chapter13;
 
-import org.apache.commons.dbutils.handlers.BeanHandler;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
+
+import org.apache.commons.dbutils.handlers.BeanHandler;
+import org.apache.commons.dbutils.BeanProcessor;
+import org.apache.commons.dbutils.BasicRowProcessor;
 
 /**
  * @author ：Kristen
@@ -14,7 +18,7 @@ import java.sql.SQLException;
 public class EmployeeHandler extends BeanHandler<Employee> {
 
     public EmployeeHandler() {
-        super(Employee.class);
+        super(Employee.class, new BasicRowProcessor(new BeanProcessor(mapColumnsToFields())));
     }
 
     @Override
@@ -23,4 +27,12 @@ public class EmployeeHandler extends BeanHandler<Employee> {
         employee.setName(employee.getFirst() + ", " + employee.getLast());
         return employee;
     }
+
+    public static Map<String, String> mapColumnsToFields() {
+        Map<String, String> columnsToFieldsMap = new HashMap<>();
+        columnsToFieldsMap.put("ID", "id");
+        columnsToFieldsMap.put("AGE", "age");
+        return columnsToFieldsMap;
+    }
 }
+

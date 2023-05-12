@@ -29,11 +29,10 @@ public class MainApp {
         QueryRunner queryRunner = new QueryRunner();
         DbUtils.loadDriver(JDBC_DRIVER);
         System.out.println("Connecting to database...");
-        ResultSetHandler<Employee> resultHandler = new BeanHandler<Employee>(Employee.class);
+        ResultSetHandler<Employee> resultHandler = new BeanHandler<>(Employee.class);
 
         try {
-            Employee emp = queryRunner.query(conn, "SELECT * FROM employees WHERE first=?",
-                    resultHandler, "Sumit");
+            Employee emp = queryRunner.query(conn, "SELECT * FROM employees WHERE first=?", resultHandler, "Sumit");
             System.out.print("ID: " + emp.getId());
             System.out.print(", Age: " + emp.getAge());
             System.out.print(", First: " + emp.getFirst());
