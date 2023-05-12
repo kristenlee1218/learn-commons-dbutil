@@ -2,18 +2,18 @@ package com.learn.chapter11;
 
 import org.apache.commons.dbutils.DbUtils;
 import org.apache.commons.dbutils.QueryRunner;
-import org.apache.commons.dbutils.handlers.MapListHandler;
+import org.apache.commons.dbutils.handlers.ArrayListHandler;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author ：Kristen
  * @date ：2023/5/12
- * @description : MapListHandler 类
+ * @description : ArrayListHandler 类
  */
 
 public class MainApp {
@@ -29,11 +29,13 @@ public class MainApp {
         Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
         QueryRunner queryRunner = new QueryRunner();
         DbUtils.loadDriver(JDBC_DRIVER);
+        //Step 2: Open a connection
         System.out.println("Connecting to database...");
         try {
-            List<Map<String, Object>> result
-                    = queryRunner.query(conn, "SELECT * FROM employees", new MapListHandler());
-            System.out.println(result);
+            List<Object[]> result = queryRunner.query(conn, "SELECT * FROM employees", new ArrayListHandler());
+            for (Object[] objects : result) {
+                System.out.println(Arrays.toString(objects));
+            }
         } finally {
             DbUtils.close(conn);
         }

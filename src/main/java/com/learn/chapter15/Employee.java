@@ -1,4 +1,4 @@
-package com.learn.chapter12;
+package com.learn.chapter15;
 
 /**
  * @author ：Kristen
@@ -11,6 +11,7 @@ public class Employee {
     private int age;
     private String first;
     private String last;
+    private String name;
 
     public int getId() {
         return id;
@@ -43,5 +44,14 @@ public class Employee {
     public void setLast(String last) {
         this.last = last;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }
+
 

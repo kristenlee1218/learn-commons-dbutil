@@ -2,15 +2,18 @@ package com.learn.chapter12;
 
 import org.apache.commons.dbutils.DbUtils;
 import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.handlers.MapListHandler;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author ：Kristen
  * @date ：2023/5/12
- * @description : DBUtils 自定义处理程序
+ * @description : MapListHandler 类
  */
 
 public class MainApp {
@@ -26,16 +29,11 @@ public class MainApp {
         Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
         QueryRunner queryRunner = new QueryRunner();
         DbUtils.loadDriver(JDBC_DRIVER);
-        EmployeeHandler employeeHandler = new EmployeeHandler();
-
+        System.out.println("Connecting to database...");
         try {
-            Employee emp = queryRunner.query(conn, "SELECT * FROM employees WHERE first=?",
-                    employeeHandler, "Sumit");
-
-            //Display values
-            System.out.print("ID: " + emp.getId());
-            System.out.print(", Age: " + emp.getAge());
-            System.out.print(", Name: " + emp.getName());
+            List<Map<String, Object>> result
+                    = queryRunner.query(conn, "SELECT * FROM employees", new MapListHandler());
+            System.out.println(result);
         } finally {
             DbUtils.close(conn);
         }

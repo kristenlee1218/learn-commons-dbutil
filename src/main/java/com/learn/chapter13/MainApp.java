@@ -10,7 +10,7 @@ import java.sql.SQLException;
 /**
  * @author ：Kristen
  * @date ：2023/5/12
- * @description : DBUtils 自定义行处理器
+ * @description : DBUtils 自定义处理程序
  */
 
 public class MainApp {
