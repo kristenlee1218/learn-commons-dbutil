@@ -25,17 +25,10 @@ public class MainApp {
     static final String PASS = "";
 
     public static void main(String[] args) throws SQLException {
-        Connection conn = null;
+        Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
         QueryRunner queryRunner = new QueryRunner();
-
-        //Step 1: Register JDBC driver
         DbUtils.loadDriver(JDBC_DRIVER);
-
-        //Step 2: Open a connection
         System.out.println("Connecting to database...");
-        conn = DriverManager.getConnection(DB_URL, USER, PASS);
-
-        //Step 3: Create a ResultSet Handler to handle Employee Beans
         ResultSetHandler<Employee> resultHandler = new BeanHandler<Employee>(Employee.class);
 
         try {

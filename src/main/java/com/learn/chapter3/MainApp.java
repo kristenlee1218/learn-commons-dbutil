@@ -25,7 +25,6 @@ public class MainApp {
     public static void main(String[] args) throws SQLException {
         Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
         QueryRunner queryRunner = new QueryRunner();
-
         DbUtils.loadDriver(JDBC_DRIVER);
         try {
             int updatedRecords = queryRunner.update(conn,
