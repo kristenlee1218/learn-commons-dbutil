@@ -1,17 +1,16 @@
-package com.learn.chapter6;
+package com.learn.chapter7.chapter12;
 
-import org.apache.commons.dbutils.AsyncQueryRunner;
 import org.apache.commons.dbutils.DbUtils;
+import org.apache.commons.dbutils.QueryRunner;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.concurrent.*;
 
 /**
  * @author ：Kristen
  * @date ：2023/5/12
- * @description : AsyncQueryRunner 接口
+ * @description : DBUtils 自定义处理程序
  */
 
 public class MainApp {
@@ -23,15 +22,17 @@ public class MainApp {
     static final String USER = "root";
     static final String PASS = "";
 
-    public static void main(String[] args) throws SQLException, InterruptedException, ExecutionException, TimeoutException {
+    public static void main(String[] args) throws SQLException {
         Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
-        AsyncQueryRunner asyncQueryRunner = new AsyncQueryRunner(Executors.newCachedThreadPool());
+        QueryRunner queryRunner = new QueryRunner();
         DbUtils.loadDriver(JDBC_DRIVER);
-        Future<Integer> future;
+        EmployeeHandler employeeHandler = new EmployeeHandler();
+
         try {
-            future = asyncQueryRunner.update(conn, "UPDATE employees SET age=? WHERE id=?", 33, 103);
-            Integer updatedRecords = future.get(10, TimeUnit.SECONDS);
-            System.out.println(updatedRecords + " record(s) updated.");
+            Employee emp = queryRunner.query(conn, "SELECT * FROM employees WHERE first=?", employeeHandler, "Sumit");
+            System.out.print("ID: " + emp.getId());
+            System.out.print(", Age: " + emp.getAge());
+            System.out.print(", Name: " + emp.getName());
         } finally {
             DbUtils.close(conn);
         }

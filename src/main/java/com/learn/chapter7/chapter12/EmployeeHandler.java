@@ -1,4 +1,4 @@
-package com.learn.chapter12;
+package com.learn.chapter7.chapter12;
 
 import org.apache.commons.dbutils.handlers.BeanHandler;
 
